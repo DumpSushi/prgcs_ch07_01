@@ -10,35 +10,18 @@ namespace ch07_01
 	{
 		static void Main(string[] args)
 		{
-			// 個別オブジェクトの配列。
 			CalendarEvent[] events = SeparateEvents();
-			ModifyFirst(events);
-			Console.WriteLine();
 
-			// 同一オブジェクトの配列。
-			events = AllTheSameEvent();
-			ModifyFirst(events);
-			Console.WriteLine();
-
-			// 整数の配列。
-			int[] numbers = { 2, 3, 5, 7, 11 };
-			int thirdElementInArray = numbers[2];
-			thirdElementInArray += 1;
-			Console.WriteLine("変数：" + thirdElementInArray);
-			Console.WriteLine("配列中の要素：" + numbers[2]);
+			DateTime dateOfInterest = new DateTime(2009, 7, 12);
+			foreach (CalendarEvent item in events)
+			{
+				if (item.StartTime.Date == dateOfInterest)
+				{
+					Console.WriteLine(item.Title + ": " + item.StartTime);
+				}
+			}
 
 			Console.ReadKey();
-		}
-
-		private static void ModifyFirst(CalendarEvent[] events)
-		{
-			Console.WriteLine(events[0].Title);
-			Console.WriteLine(events[1].Title);
-
-			events[0].Title = "変更";
-
-			Console.WriteLine(events[0].Title);
-			Console.WriteLine(events[1].Title);
 		}
 
 		private static CalendarEvent[] SeparateEvents()
@@ -76,35 +59,6 @@ namespace ch07_01
 					Duration = TimeSpan.FromHours(5)
 				}
 			};
-
-			CalendarEvent thirdElementInArray = events[2];
-			thirdElementInArray.Title = "変更されたタイトル";
-			Console.WriteLine("変数：" + thirdElementInArray.Title);
-			Console.WriteLine("配列中の要素：" + events[2].Title);
-
-			Console.WriteLine();
-
-			return events;
-		}
-
-		private static CalendarEvent[] AllTheSameEvent()
-		{
-			CalendarEvent theOnlyEvent = new CalendarEvent
-			{
-				Title = "サウスバンクでスウィング・ダンス",
-				StartTime = new DateTimeOffset(2009, 7, 11, 15, 00, 00, TimeSpan.Zero),
-				Duration = TimeSpan.FromHours(4)
-			};
-
-			CalendarEvent[] events =
-			{
-				theOnlyEvent,
-				theOnlyEvent,
-				theOnlyEvent,
-				theOnlyEvent,
-				theOnlyEvent
-			};
-
 			return events;
 		}
 	}

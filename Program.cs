@@ -10,6 +10,31 @@ namespace ch07_01
 	{
 		static void Main(string[] args)
 		{
+			CalendarEvent[] events = SeparateEvents();
+			ModifyFirst(events);
+
+			Console.WriteLine();
+
+			events = AllTheSameEvent();
+			ModifyFirst(events);
+
+			Console.WriteLine();
+			Console.ReadKey();
+		}
+
+		private static void ModifyFirst(CalendarEvent[] events)
+		{
+			Console.WriteLine(events[0].Title);
+			Console.WriteLine(events[1].Title);
+
+			events[0].Title = "変更";
+
+			Console.WriteLine(events[0].Title);
+			Console.WriteLine(events[1].Title);
+		}
+
+		private static CalendarEvent[] SeparateEvents()
+		{
 			CalendarEvent[] events =
 			{
 				new CalendarEvent
@@ -43,16 +68,36 @@ namespace ch07_01
 					Duration = TimeSpan.FromHours(5)
 				}
 			};
+
+			CalendarEvent thirdElementInArray = events[2];
+			thirdElementInArray.Title = "変更されたタイトル";
+			Console.WriteLine("変数：" + thirdElementInArray.Title);
+			Console.WriteLine("配列中の要素：" + events[2].Title);
+
+			Console.WriteLine();
+
+			return events;
 		}
 
-		static string[] AddNumbers(string[] names)
+		private static CalendarEvent[] AllTheSameEvent()
 		{
-			string[] numberedNames = new string[names.Length];
-			for (int i = 0; i < names.Length; ++i)
+			CalendarEvent theOnlyEvent = new CalendarEvent
 			{
-				numberedNames[i] = string.Format("{0]: {1}", i, names[i]);
-			}
-			return numberedNames;
+				Title = "サウスバンクでスウィング・ダンス",
+				StartTime = new DateTimeOffset(2009, 7, 11, 15, 00, 00, TimeSpan.Zero),
+				Duration = TimeSpan.FromHours(4)
+			};
+
+			CalendarEvent[] events =
+			{
+				theOnlyEvent,
+				theOnlyEvent,
+				theOnlyEvent,
+				theOnlyEvent,
+				theOnlyEvent
+			};
+
+			return events;
 		}
 	}
 }

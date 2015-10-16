@@ -10,15 +10,23 @@ namespace ch07_01
 	{
 		static void Main(string[] args)
 		{
+			// 個別オブジェクトの配列。
 			CalendarEvent[] events = SeparateEvents();
 			ModifyFirst(events);
-
 			Console.WriteLine();
 
+			// 同一オブジェクトの配列。
 			events = AllTheSameEvent();
 			ModifyFirst(events);
-
 			Console.WriteLine();
+
+			// 整数の配列。
+			int[] numbers = { 2, 3, 5, 7, 11 };
+			int thirdElementInArray = numbers[2];
+			thirdElementInArray += 1;
+			Console.WriteLine("変数：" + thirdElementInArray);
+			Console.WriteLine("配列中の要素：" + numbers[2]);
+
 			Console.ReadKey();
 		}
 

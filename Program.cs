@@ -12,6 +12,15 @@ namespace ch07_01
 		{
 			CalendarEvent[] events = SeparateEvents();
 
+
+			LoopFind(events);
+			FindAll(events);
+
+			Console.ReadKey();
+		}
+
+		static void LoopFind(CalendarEvent[] events)
+		{
 			DateTime dateOfInterest = new DateTime(2009, 7, 12);
 			foreach (CalendarEvent item in events)
 			{
@@ -20,8 +29,19 @@ namespace ch07_01
 					Console.WriteLine(item.Title + ": " + item.StartTime);
 				}
 			}
+			Console.WriteLine();
+		}
 
-			Console.ReadKey();
+		static void FindAll(CalendarEvent[] events)
+		{
+			DateTime dateOfInterest = new DateTime(2009, 7, 12);
+			CalendarEvent[] itemsOnDateOfInterest =
+				Array.FindAll(events, e => e.StartTime.Date == dateOfInterest);
+			foreach (CalendarEvent item in itemsOnDateOfInterest)
+			{
+				Console.WriteLine(item.Title + "：" + item.StartTime);
+			}
+			Console.WriteLine();
 		}
 
 		private static CalendarEvent[] SeparateEvents()

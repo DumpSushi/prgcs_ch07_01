@@ -15,6 +15,7 @@ namespace ch07_01
 
 			LoopFind(events);
 			FindAll(events);
+			SortEvents(events);
 
 			Console.ReadKey();
 		}
@@ -42,6 +43,27 @@ namespace ch07_01
 				Console.WriteLine(item.Title + "：" + item.StartTime);
 			}
 			Console.WriteLine();
+		}
+
+		static void SortEvents(CalendarEvent[] events)
+		{
+			Array.Sort(events,
+				(event1, event2) => event1.StartTime.CompareTo(event2.StartTime));
+			PrintEvents(events);
+			Console.WriteLine();
+
+			Array.Sort(events,
+				(event1, event2) => event1.Duration.CompareTo(event2.Duration));
+			PrintEvents(events);
+			Console.WriteLine();
+		}
+
+		static void PrintEvents(CalendarEvent[] events)
+		{
+			foreach (CalendarEvent item in events)
+			{
+				Console.WriteLine(item.Title + ": " + item.StartTime);
+			}
 		}
 
 		private static CalendarEvent[] SeparateEvents()

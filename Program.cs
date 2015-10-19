@@ -17,6 +17,10 @@ namespace ch07_01
 			FindAll(events);
 			SortEvents(events);
 
+			int[] numbers = { 4, 1, 2, 5, 3 };
+			Array.Sort(numbers);
+			Array.Sort(events);
+
 			Console.ReadKey();
 		}
 
